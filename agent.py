@@ -46,7 +46,7 @@ def analyze_repository(repo_path: str, project_id: str):
 
     # Use gemini-2.0-flash as requested to prevent 404 errors
     chat = client.chats.create(
-        model="gemini-2.0-flash",
+      model = 'gemini-1.5-flash',
         config=types.GenerateContentConfig(
             system_instruction=PERSONA,
             tools=[agent_get_repo_tree, agent_read_code_file],
