@@ -4,11 +4,13 @@
     "project_title": "Voice UI App",
     "tagline": "Provides a high-performance voice-driven user interface aiming for sub-200ms latency.",
     "technical_stack": [
-      "JavaScript"
+      "JavaScript",
+      "Native Web Speech API"
     ],
     "core_features": [
-      "High-performance custom state manager using a CustomStore class for optimized data handling.",
-      "Direct integration with native webkitSpeechRecognition API for voice commands, avoiding external wrappers."
+      "Implements a high-performance custom state manager (CustomStore) for efficient data handling.",
+      "Utilizes native Web Speech API (webkitSpeechRecognition) for voice commands, avoiding external libraries for lean and direct browser interaction.",
+      "Designed for a voice-driven user interface with a target latency of under 200ms."
     ],
     "metrics_tracked": {
       "latency_target": "sub-200ms",
