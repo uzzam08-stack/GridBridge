@@ -1,0 +1,37 @@
+name: AntiGravity Portfolio Sync
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  analyze_and_sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run AntiGravity Agent
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python main.py --repo "."
+
+      - name: Commit and Push portfolio_data.json
+        run: |
+          git config --global user.name "AntiGravity Bot"
+          git config --global user.email "bot@antigravity.ai"
+          git add portfolio_data.json
+          git commit -m "chore: auto-update portfolio_data.json from AntiGravity Agent" || echo "No changes to commit"
+          git push
